@@ -2,7 +2,6 @@ import {Box, Button, Heading, HStack, Input, ScrollView, Spinner, Stack, Text, u
 import React, {useState} from 'react';
 import {Dimensions, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import IconMaterial from 'react-native-vector-icons/MaterialCommunityIcons';
 import app from '../styles/app';
 
 var {height} = Dimensions.get('screen');
@@ -31,10 +30,10 @@ const Login = ({navigation}) => {
     return (
         <VStack justifyContent={'space-between'}>
             <VStack justifyContent="center" alignItems="center" h="250" backgroundColor="tertiary.500">
-                <Icon name="md-fast-food-sharp" size={60} color="#fff" />
+                <Icon name="home" size={60} color="#fff" />
                 <TouchableOpacity onPress={() => navigation.navigate('Index')}>
-                    <Text mt="2" fontSize="20" fontWeight="bold" color="white">
-                        Connectis Glocery
+                    <Text mt="2" fontSize="40" fontWeight="bold" color="white">
+                        SIMA
                     </Text>
                 </TouchableOpacity>
             </VStack>
@@ -102,27 +101,18 @@ const Login = ({navigation}) => {
 
                         {loading && (
                             <HStack space={2} justifyContent="center" style={{marginTop: 10}}>
-                                <Spinner color="#e91e63ff" accessibilityLabel="Connexion encours..." />
-                                <Heading color="#e91e63ff" fontSize="md">
+                                <Spinner color="tertiary.700" accessibilityLabel="Connexion encours..." />
+                                <Heading color="tertiary.700" fontSize="md">
                                     Connexion encours...
                                 </Heading>
                             </HStack>
                         )}
                     </Stack>
 
-                    <Text mt={7} mb={2} textAlign="center" fontWeight="light" color="tertiary.600">
-                        - Ou se connecter avec -
-                    </Text>
-
-                    <HStack space={5} justifyContent="center" mb={7}>
-                        <IconMaterial name="facebook" size={50} color="#1362b0" />
-                        <Icon name="ios-logo-google" size={46} color="#d63509" />
-                    </HStack>
-
-                    <View textAlign="center" fontWeight="light">
-                        <Text textAlign="center">Vous n'avez pas un compte ?</Text>
+                    <View mt={100} textAlign="center" fontWeight="light">
+                        {/* <Text textAlign="center">Vous n'avez pas un compte ?</Text> */}
                         <Text textAlign="center" fontWeight={'bold'} color="tertiary.600">
-                            Créer un nouveau compte
+                            SIMA - PASA NK
                         </Text>
                     </View>
                 </ScrollView>
@@ -163,7 +153,7 @@ const styles = StyleSheet.create({
         fontSize: 17,
     },
     loginBody: {
-        paddingTop: height / 8,
+        paddingTop: 20
     },
 });
 

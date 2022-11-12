@@ -26,8 +26,6 @@ const BottomBar = () => {
                         position: 'absolute',
                         bottom: 0,
                         elevation: 0,
-                        borderTopLeftRadius: 15,
-                        borderTopRightRadius: 15,
                         left: 0,
                         right: 0,
                         height: Platform.OS === 'ios' ? 90 : 60,
