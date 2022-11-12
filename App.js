@@ -1,15 +1,14 @@
 import React from 'react';
-import {NativeBaseProvider, Box} from 'native-base';
-import {StatusBar, Text, View} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import {NativeBaseProvider} from 'native-base';
+import {StatusBar} from 'react-native';
+import MainNavigation from './src/navigations/MainNavigation';
 
 const App = () => {
-  return (
-    <NativeBaseProvider>
-      <StatusBar translucent barStyle="dark-content" backgroundColor="#fff" />
-      <Text>Salut</Text>
-      <Icon name="rocket" size={30} color="#900" />
-    </NativeBaseProvider>
-  );
+    return (
+        <NativeBaseProvider>
+            <StatusBar translucent barStyle="dark-content" backgroundColor="#fff" />
+            <MainNavigation />
+        </NativeBaseProvider>
+    );
 };
 export default App;
