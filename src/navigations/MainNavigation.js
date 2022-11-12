@@ -9,7 +9,7 @@ const Stack = createNativeStackNavigator();
 const MainNavigation = () => {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="BottomBar" screenOptions={{gestureEnabled: false, headerShown: false}}>
+            <Stack.Navigator initialRouteName="Index" screenOptions={{gestureEnabled: false, headerShown: false}}>
                 <Stack.Screen name="Index" component={BottomBar} />
                 <Stack.Screen name="Login" component={Login} />
             </Stack.Navigator>

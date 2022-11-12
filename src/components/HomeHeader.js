@@ -15,18 +15,16 @@ const HomeHeader = ({navigation}) => {
 
     return (
         <HStack style={styles.header}>
-            <TouchableOpacity onPress={console.log('get default localication')}>
-                <HStack alignItems="center">
-                    <Icon name="home" color="tertiary" size={25} />
-                    <Text color="tertiary" fontSize="lg" marginLeft={2} fontWeight="bold">
-                        SIMA
-                    </Text>
-                </HStack>
-            </TouchableOpacity>
+            <HStack alignItems="center">
+                <Icon color={'green'} name="home" size={25} />
+                <Text color={'green'} fontSize="lg" marginLeft={2} fontWeight="bold">
+                    SIMA
+                </Text>
+            </HStack>
 
             <HStack style={{alignItems: 'center'}}>
                 <Button size="xs" variant={'outline'} onPress={() => navigation.navigate('Login')} colorScheme="tertiary">
-                    <Text color="green">Se deconnecter</Text>
+                    <Text>Se deconnecter</Text>
                 </Button>
             </HStack>
         </HStack>
