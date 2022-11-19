@@ -3,27 +3,28 @@ import React from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import {Button, HStack, Text} from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {useDispatch} from 'react-redux';
+import {logout} from '../services/redux/actions/userAction';
 
 const HomeHeader = ({navigation}) => {
-    //const user = useSelector(state => state.user);
+    const dispatch = useDispatch();
 
-    // useEffect(() => {
-    //   if (user.isLoggedIn && user.user_data !== null) {
-    //     console.log('User connected from header', user.user_data);
-    //   }
-    // }, [user]);
+    const deconnexion = async () => {
+        await dispatch(logout());
+        navigation.navigate('Login');
+    };
 
     return (
         <HStack style={styles.header}>
             <HStack alignItems="center">
                 <Icon color={'green'} name="home" size={25} />
-                <Text color={'green'} fontSize="lg" marginLeft={2} fontWeight="bold">
+                <Text color={'tertiary.600'} fontSize="lg" marginLeft={2} fontWeight="bold">
                     SIMA
                 </Text>
             </HStack>
 
             <HStack style={{alignItems: 'center'}}>
-                <Button size="xs" variant={'outline'} onPress={() => navigation.navigate('Login')} colorScheme="tertiary">
+                <Button size="xs" variant={'outline'} onPress={deconnexion} colorScheme="tertiary">
                     <Text>Se deconnecter</Text>
                 </Button>
             </HStack>

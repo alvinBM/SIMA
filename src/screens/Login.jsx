@@ -2,7 +2,8 @@ import {Box, Button, Heading, HStack, Input, ScrollView, Spinner, Stack, Text, u
 import React, {useState} from 'react';
 import {Dimensions, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import app from '../styles/app';
+import {useDispatch} from 'react-redux';
+import {login} from '../services/redux/actions/userAction';
 
 var {height} = Dimensions.get('screen');
 
@@ -13,18 +14,46 @@ const Login = ({navigation}) => {
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
     const toast = useToast();
+    const dispatch = useDispatch();
 
-    const onSubmitLogin = async () =>{
+    const onSubmitLogin = async () => {
         setLoading(true);
-        toast.show({
-            render: () => {
-                return (
-                    <Box bg="#fc0303" px="4" py="4" rounded="sm" mb={5}>
-                        <Text color={'#fff'}>A integrer</Text>
-                    </Box>
-                );
-            },
-        });
+        const res = await dispatch(login(identifier, password));
+        setLoading(false);
+        if (!res) {
+            toast.show({
+                render: () => {
+                    return (
+                        <Box bg="#fc0303" px="4" py="4" rounded="sm" mb={5}>
+                            <Text color={'#fff'}>Server error : Request failed due to internal server error</Text>
+                        </Box>
+                    );
+                },
+            });
+            return;
+        }
+        if (res.code !== 200) {
+            toast.show({
+                render: () => {
+                    return (
+                        <Box bg="#fc0303" px="4" py="4" rounded="sm" mb={5}>
+                            <Text color={'#fff'}>{res.message}</Text>
+                        </Box>
+                    );
+                },
+            });
+        } else {
+            toast.show({
+                render: () => {
+                    return (
+                        <Box bg="primary.500" px="4" py="4" rounded="sm" mb={5}>
+                            <Text color={'#fff'}>Vous êtes connecté avec succès</Text>
+                        </Box>
+                    );
+                },
+            });
+            navigation.navigate('Index');
+        }
     };
 
     return (
@@ -153,7 +182,7 @@ const styles = StyleSheet.create({
         fontSize: 17,
     },
     loginBody: {
-        paddingTop: 20
+        paddingTop: 20,
     },
 });
 
