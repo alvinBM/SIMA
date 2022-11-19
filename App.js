@@ -1,14 +1,21 @@
 import React from 'react';
 import {NativeBaseProvider} from 'native-base';
-import {StatusBar} from 'react-native';
+import {SafeAreaView, StatusBar} from 'react-native';
 import MainNavigation from './src/navigations/MainNavigation';
+import {Provider} from 'react-redux';
+import store from './src/services/redux/store';
+import {AuthProvider} from './src/services/sessionManage/AuthProvider';
 
 const App = () => {
     return (
-        <NativeBaseProvider>
+        <Provider store={store}>
             <StatusBar translucent barStyle="dark-content" backgroundColor="#fff" />
-            <MainNavigation />
-        </NativeBaseProvider>
+            <AuthProvider>
+                <NativeBaseProvider>
+                    <MainNavigation />
+                </NativeBaseProvider>
+            </AuthProvider>
+        </Provider>
     );
 };
 export default App;

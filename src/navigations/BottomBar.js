@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow */
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useEffect} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Octicons from 'react-native-vector-icons/Octicons';
@@ -15,7 +15,7 @@ const Tabs = createBottomTabNavigator();
 const BottomBar = () => {
     return (
         <Tabs.Navigator
-            initialRouteName="Dashboard"
+            initialRouteName="Home"
             screenOptions={{
                 tabBarActiveTintColor: 'green',
                 tabBarInactiveTintColor: '#444',
