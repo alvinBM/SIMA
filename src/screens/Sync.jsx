@@ -6,7 +6,7 @@ import axiosApi from '../api/axios';
 import HomeHeader from '../components/HomeHeader';
 import realm, {deleteData, getDatas} from '../databases/schemas';
 import qs from 'qs';
-import { setLastDataId } from '../services/redux/actions/userAction';
+import {setLastDataId} from '../services/redux/actions/userAction';
 
 const Sync = ({navigation}) => {
     const data = useSelector(state => state.user);
@@ -59,12 +59,6 @@ const Sync = ({navigation}) => {
             };
 
             saveData(requestBody, data.id, i);
-
-            if (i == total) {
-                setLoading(false);
-                setTotal(0);
-                dispatch(setLastDataId(0));
-            }
         });
     };
 
@@ -104,6 +98,12 @@ const Sync = ({navigation}) => {
                 },
             });
         }
+
+        if (i == total) {
+            setLoading(false);
+            setTotal(0);
+            dispatch(setLastDataId(0));
+        }
     };
 
     return (
@@ -130,8 +130,7 @@ const Sync = ({navigation}) => {
                 {loading && (
                     <HStack space={2} justifyContent="center" style={{marginTop: 10}}>
                         <Heading color="tertiary.700" fontSize="md">
-                            {Math.ceil(pourecentage)}
-                            {'%'} Synchronisation encours...
+                            Synchronisation encours...
                         </Heading>
                     </HStack>
                 )}
