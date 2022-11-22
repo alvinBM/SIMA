@@ -1,6 +1,7 @@
 import qs from 'qs';
 
 import {SET_USER} from '../reducers/userReducer';
+import {SET_LAST_DATA_ID} from '../reducers/userReducer';
 import {deleteUserSession, setUserSession} from '../../sessionManage/userSession';
 import axiosApi from '../../../api/axios';
 
@@ -8,6 +9,13 @@ export const setUser = user => {
     return {
         type: SET_USER,
         value: user,
+    };
+};
+
+export const setLastDataId = data => {
+    return {
+        type: SET_LAST_DATA_ID,
+        value: data,
     };
 };
 

@@ -1,15 +1,17 @@
 import {Box, Button, Heading, HStack, Input, ScrollView, Select, Spinner, Text, TextArea, useToast, View} from 'native-base';
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import HomeHeader from '../components/HomeHeader';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {createDate} from '../databases/schemas';
+import realm, {createDate} from '../databases/schemas';
 import axiosApi from '../api/axios';
+import {setLastDataId} from '../services/redux/actions/userAction';
+import {useDispatch, useSelector} from 'react-redux';
 
 const Form = ({navigation}) => {
     const [marche, setMarche] = useState('');
     const [produit, setProduit] = useState('');
-    const [currency, setCureency] = useState(null);
+    const [currency, setCureency] = useState('');
     const [prix, setPrix] = useState('');
     const [poids, setPoids] = useState('');
     const [taux, setTaux] = useState('');
@@ -17,6 +19,8 @@ const Form = ({navigation}) => {
     const [loading, setLoading] = useState(false);
     const [marches, setMarches] = useState([]);
     const [produits, setProduits] = useState([]);
+    const dispatch = useDispatch();
+    const user = useSelector(state => state.user);
 
     const toast = useToast();
 
@@ -32,11 +36,13 @@ const Form = ({navigation}) => {
             }
         };
 
+        setMarche(user.user_data.market);
+
         loadData();
     }, []);
 
     const onSubmitForm = async () => {
-        if (marche != '' && produit != '' && currency != null && prix != '' && poids != '' && taux != '') {
+        if (marche != '' && produit != '' && currency != '' && prix != '' && poids != '' && taux != '') {
             setLoading(true);
 
             const data = {
@@ -69,8 +75,11 @@ const Form = ({navigation}) => {
                     setCureency('');
                     setPoids('');
                     setTaux('');
+
+                    let lastData = {lastId: data.id};
+                    dispatch(setLastDataId(lastData));
                     console.log('Enregitré : ', res);
-                    setTimeout(() => navigation.navigate('Home'), 1000);
+                    setTimeout(() => navigation.navigate('Home'), 500);
                     setLoading(false);
                 })
                 .catch(error => {
@@ -167,7 +176,7 @@ const Form = ({navigation}) => {
                         }}
                         onValueChange={itemValue => setCureency(itemValue)}>
                         <Select.Item label="USD" value="USD" />
-                        <Select.Item label="Fc" value="CFD" />
+                        <Select.Item label="FC" value="FC" />
                     </Select>
                 </HStack>
 
