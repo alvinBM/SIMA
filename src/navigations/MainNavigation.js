@@ -11,11 +11,11 @@ const MainNavigation = () => {
     const user = useSelector(state => state.user);
 
     useEffect(() => {
-        if (user.isLoggedIn && user.user_data !== null) {
-            console.log('User connected from menu', user.user_data);
-        } else {
-            console.log('User not connected from menu');
-        }
+        // if (user.isLoggedIn && user.user_data !== null) {
+        //     console.log('User connected from menu', user.user_data);
+        // } else {
+        //     console.log('User not connected from menu');
+        // }
     }, [user]);
 
     return (
