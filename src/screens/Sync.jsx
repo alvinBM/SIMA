@@ -111,30 +111,32 @@ const Sync = ({navigation}) => {
             {/* Header */}
             <HomeHeader navigation={navigation} />
 
-            <VStack pt="40" p={4} justifyContent="center" alignItems={'center'}>
-                <Text fontSize={25} fontWeight="bold">
-                    Synchronisation
-                </Text>
-                <Text fontSize={150} fontWeight="bold">
-                    {total}
-                </Text>
-                <Text marginBottom={10} fontSize={20}>
-                    Données à synchroniser
-                </Text>
-                {!loading && total > 0 && (
-                    <Button onPress={onSubmitSync} size="lg" w={'95%'} h={'50px'} colorScheme="tertiary">
-                        Synchroniser les données
-                    </Button>
-                )}
+            <ScrollView>
+                <VStack pt="20" p={4} justifyContent="center" alignItems={'center'} pb={40}>
+                    <Text fontSize={25} fontWeight="bold">
+                        Synchronisation
+                    </Text>
+                    <Text fontSize={150} fontWeight="bold">
+                        {total}
+                    </Text>
+                    <Text marginBottom={10} fontSize={20}>
+                        Données à synchroniser
+                    </Text>
+                    {!loading && total > 0 && (
+                        <Button onPress={onSubmitSync} size="lg" w={'95%'} h={'50px'} colorScheme="tertiary">
+                            Synchroniser les données
+                        </Button>
+                    )}
 
-                {loading && (
-                    <HStack space={2} justifyContent="center" style={{marginTop: 10}}>
-                        <Heading color="tertiary.700" fontSize="md">
-                            Synchronisation encours...
-                        </Heading>
-                    </HStack>
-                )}
-            </VStack>
+                    {loading && (
+                        <HStack space={2} justifyContent="center" style={{marginTop: 10}}>
+                            <Heading color="tertiary.700" fontSize="md">
+                                Synchronisation encours...
+                            </Heading>
+                        </HStack>
+                    )}
+                </VStack>
+            </ScrollView>
         </SafeAreaView>
     );
 };

@@ -1,11 +1,12 @@
 import {Box, Button, Heading, HStack, Input, ScrollView, Spinner, Stack, Text, useToast, View, VStack} from 'native-base';
 import React, {useState} from 'react';
-import {Dimensions, StyleSheet, TouchableOpacity} from 'react-native';
+import {Dimensions, ImageBackground, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useDispatch} from 'react-redux';
 import {login} from '../services/redux/actions/userAction';
 
 var {height} = Dimensions.get('screen');
+const logo = require('../assets/logo.png');
 
 const Login = ({navigation}) => {
     const [identifier, setIdentifier] = useState('');
@@ -58,11 +59,11 @@ const Login = ({navigation}) => {
 
     return (
         <VStack justifyContent={'space-between'}>
-            <VStack justifyContent="center" alignItems="center" h="250" backgroundColor="tertiary.500">
-                <Icon name="home" size={60} color="#fff" />
+            <VStack justifyContent="center" alignItems="center" h="250" backgroundColor="gray.200">
+                <ImageBackground resizeMode="cover" style={{width: 80, height: 80}} source={logo} />
                 <TouchableOpacity onPress={() => navigation.navigate('Index')}>
-                    <Text mt="2" fontSize="40" fontWeight="bold" color="white">
-                        SIMA
+                    <Text mt="2" fontSize="40" fontWeight="bold" color="gray.900">
+                        SIMA | PASA-NK
                     </Text>
                 </TouchableOpacity>
             </VStack>
